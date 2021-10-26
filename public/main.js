@@ -132,6 +132,15 @@ async function getWeatherData(city) {
         input.placeholder = `${name},${country}`
 
 
+        const toast = document.querySelector('.toast')
+
+
+        //If we have previously entered faulty city name, and we type fast enough a valid city name, then we don't need to keep showing the toast.
+        if (toast.classList.contains('show')) {
+            toast.classList.remove('show')
+        }
+
+
         isSubmit = false
         submitButton.disabled = true
 
