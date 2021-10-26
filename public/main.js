@@ -165,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isSubmit) {
             event.target.value = ''
             event.target.placeholder = tempName;
+            submitButton.disabled = true
+
         }
     });
 
