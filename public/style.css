@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
     font-family: 'Montserrat',
         sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 body.morning {
@@ -35,7 +35,7 @@ input[name=location] {
     outline: none;
     color: #fff;
     text-align: center;
-    font-size: 15px;
+    font-size: .9375rem;
     height: 100%;
 }
 
@@ -67,12 +67,12 @@ input {
 
 
 .box {
-    height: 510px;
-    max-width: 330px;
+    height: 31.875rem;
+    max-width: 20.625rem;
     width: 100%;
     margin: 0 auto;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 1.25rem;
+    box-shadow: 0 0 .9375rem rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 2, 97, 0.5);
     color: #fff;
     background-size: cover;
@@ -90,13 +90,13 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    backdrop-filter: blur(3px);
-    font-size: 30px;
+    border-radius: 1.25rem;
+    backdrop-filter: blur(.1875rem);
+    font-size: 1.875rem;
     background-image: url('./assets/images/loading.gif');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 60px;
+    background-size: 3.75rem;
 
 }
 
@@ -118,7 +118,7 @@ input {
     inset: 0;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.2)
 }
@@ -129,60 +129,60 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 .weather-temp {
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 
 .weather-temp::after {
     content: '°';
     position: absolute;
-    top: -10px;
-    right: -20px;
-    font-size: 40px;
+    top: -0.625rem;
+    right: -1.25rem;
+    font-size: 2.5rem;
 }
 
 .weather-temp-like::after {
     content: '°';
     position: absolute;
-    top: -5px;
-    right: -10px;
-    font-size: 20px;
+    top: -0.3125rem;
+    right: -0.625rem;
+    font-size: 1.25rem;
 }
 
 .weather-desc {
-    margin-top: -10px;
+    margin-top: -0.625rem;
     font-weight: lighter;
     position: relative;
 }
 
 .predictions {
-    font-size: 14px;
+    font-size: .875rem;
 }
 
 .predictions .date:not(:last-child)::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -0.3125rem;
     background-color: rgba(255, 255, 255, 0.5);
-    height: 1px;
+    height: .0625rem;
     width: 90%;
     left: 5%;
 }
 
 .day-temp {
-    max-width: 100px;
+    max-width: 6.25rem;
     width: 100%;
 }
 
 .day-temp p:first-child:after {
     content: '°';
     position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 20px;
+    top: -0.625rem;
+    right: -0.625rem;
+    font-size: 1.25rem;
 }
 
 .day-temp p:last-child {
@@ -203,7 +203,7 @@ input {
     vertical-align: middle;
     text-decoration: none;
     color: #fff;
-    border-radius: 25px;
+    border-radius: 1.5625rem;
     -webkit-transition: width 0.5s;
     transition: width 0.5s;
 }
@@ -224,12 +224,12 @@ input {
 }
 
 .btn-credits:hover .btn-credits-text {
-    max-width: 610px;
+    max-width: 38.125rem;
     color: white;
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .credits_container {
         display: none;
     }
