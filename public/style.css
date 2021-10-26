@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+::placeholder {
+    color: #fff;
+    font-size: 1.2rem
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+body {
+    background: linear-gradient(135deg, #826274, #3b3451);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Montserrat',
+        sans-serif;
+    font-size: 16px;
+}
+
+body.morning {
+    background: linear-gradient(135deg, #a98054, #77a2a0);
+}
+
+body.evening {
+    background: linear-gradient(135deg, #1c0e35, #3c3342);
+}
+
+input[name=location] {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    height: 100%;
+}
+
+
+button[type=submit] {
+    appearance: none;
+    background: none;
+    border: none;
+    display: block;
+    right: 0;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+button[type=submit] ion-icon {
+    color: #fff;
+}
+
+button[type=submit]:disabled ion-icon {
+    color: rgb(185, 185, 185);
+}
+
+form,
+input {
+    width: 100%;
+}
+
+
+.box {
+    height: 510px;
+    max-width: 330px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 2, 97, 0.5);
+    color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    position: relative;
+}
+
+.box.loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+    font-size: 30px;
+    background-image: url('./assets/images/loading.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60px;
+
+}
+
+.morning .box {
+    background-image: url('./assets/images/morning.webp')
+}
+
+.afternoon .box {
+    background-image: url('./assets/images/afternoon.webp')
+}
+
+.evening .box {
+    background-image: url('./assets/images/evening.webp')
+}
+
+.box:not(.evening)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.box-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.weather-temp {
+    font-size: 40px;
+}
+
+.weather-temp::after {
+    content: '°';
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    font-size: 40px;
+}
+
+.weather-temp-like::after {
+    content: '°';
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 20px;
+}
+
+.weather-desc {
+    margin-top: -10px;
+    font-weight: lighter;
+    position: relative;
+}
+
+.predictions {
+    font-size: 14px;
+}
+
+.predictions .date:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 1px;
+    width: 90%;
+    left: 5%;
+}
+
+.day-temp {
+    max-width: 100px;
+    width: 100%;
+}
+
+.day-temp p:first-child:after {
+    content: '°';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+}
+
+.day-temp p:last-child {
+    color: rgba(255, 255, 255, 0.7)
+}
+
+.credits_container {
+    position: relative;
+}
+
+.btn-credits {
+    position: relative;
+    display: inline-block;
+    background-color: #323266;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 25px;
+    -webkit-transition: width 0.5s;
+    transition: width 0.5s;
+}
+
+.btn-credits .btn-credits-text {
+    max-width: 0;
+    display: inline-block;
+    -webkit-transition: color .25s 1.5s, max-width 1s;
+    transition: color .25s 1.5s, max-width 1s;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #fff;
+}
+
+.btn-credits .btn-credits-text a {
+    color: #fff;
+}
+
+.btn-credits:hover .btn-credits-text {
+    max-width: 610px;
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    .credits_container {
+        display: none;
+    }
+}
