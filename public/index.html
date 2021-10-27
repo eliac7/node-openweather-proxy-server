@@ -1,108 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
     <!-- Main style CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Favicons -->
     <!--Favicon powered by https://www.flaticon.com/ -->
 
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicons/site.webmanifest">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicons/site.webmanifest" />
 
-</head>
+    <!-- Primary Meta Tags -->
+    <title>Weather App</title>
+    <meta name="title" content="Weather App" />
+    <meta
+      name="description"
+      content="A modern weather app, built with HTML, CSS, and Vanilla JS, using OpenWeatherMap API to interact with."
+    />
 
-<body>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://node-openweather-proxy-server.herokuapp.com/"
+    />
+    <meta property="og:title" content="Weather App" />
+    <meta
+      property="og:description"
+      content="A modern weather app, built with HTML, CSS, and Vanilla JS, using OpenWeatherMap API to interact with."
+    />
+    <meta property="og:image" content="./assets/images/shareimg.jpg" />
 
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://node-openweather-proxy-server.herokuapp.com/"
+    />
+    <meta property="twitter:title" content="Weather App" />
+    <meta
+      property="twitter:description"
+      content="A modern weather app, built with HTML, CSS, and Vanilla JS, using OpenWeatherMap API to interact with."
+    />
+    <meta property="twitter:image" content="./assets/images/shareimg.jpg" />
+  </head>
+
+  <body>
     <div class="container">
-        <div class="box loading">
-            <div class="box-inner">
-                <div class="weather-info d-flex flex-column align-items-center justify-content-center gap-1">
-                    <form>
-                        <div class="position-relative d-flex">
-                            <input type="text" name="location" id="location" autocomplete="off"
-                                class="user-select-none">
-                            <button type="submit" disabled>
-                                <ion-icon name="search-outline" formaction="submit"></ion-icon>
-                            </button>
+      <div class="box loading">
+        <div class="box-inner">
+          <div
+            class="
+              weather-info
+              d-flex
+              flex-column
+              align-items-center
+              justify-content-center
+              gap-1
+            "
+          >
+            <form>
+              <div class="position-relative d-flex">
+                <input
+                  type="text"
+                  name="location"
+                  id="location"
+                  autocomplete="off"
+                  class="user-select-none"
+                />
+                <button type="submit" disabled>
+                  <ion-icon
+                    name="search-outline"
+                    formaction="submit"
+                  ></ion-icon>
+                </button>
+              </div>
+            </form>
+            <p class="weather-temp position-relative m-0"></p>
+            <p class="weather-temp-like position-relative">
+              Feels like <span></span>
+            </p>
 
-                        </div>
-                    </form>
-                    <p class="weather-temp position-relative m-0"></p>
-                    <p class="weather-temp-like position-relative">Feels like <span></span></p>
-
-                    <p class="weather-desc"></p>
-                </div>
-                <div class="predictions">
-                    <div class="date d-flex justify-content-between align-items-center position-relative mb-3">
-                        <div class="day"></div>
-                        <div
-                            class="day-temp d-flex flex-column align-items-center justify-content-center position-relative">
-                            <p class="m-0 position-relative"></p>
-                            <p class="m-0 text-center"></p>
-
-                        </div>
-                    </div>
-                    <div class="date d-flex justify-content-between align-items-center position-relative">
-                        <div class="day"></div>
-                        <div class="day-temp d-flex flex-column align-items-center justify-content-center">
-                            <p class="m-0 position-relative">17</p>
-                            <p class="m-0 text-center"></p>
-
-                        </div>
-                    </div>
-
-                </div>
+            <p class="weather-desc"></p>
+          </div>
+          <div class="predictions">
+            <div
+              class="
+                date
+                d-flex
+                justify-content-between
+                align-items-center
+                position-relative
+                mb-3
+              "
+            >
+              <div class="day"></div>
+              <div
+                class="
+                  day-temp
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  position-relative
+                "
+              >
+                <p class="m-0 position-relative"></p>
+                <p class="m-0 text-center"></p>
+              </div>
             </div>
+            <div
+              class="
+                date
+                d-flex
+                justify-content-between
+                align-items-center
+                position-relative
+              "
+            >
+              <div class="day"></div>
+              <div
+                class="
+                  day-temp
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                "
+              >
+                <p class="m-0 position-relative">17</p>
+                <p class="m-0 text-center"></p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="toast position-absolute top-0 end-0 bg-danger m-lg-2" role="alert" aria-live="assertive"
-        aria-atomic="true">
-        <button type="button" class="btn-close btn-close-white float-end" data-bs-dismiss="toast"
-            aria-label="Close"></button>
-        <div class="toast-body text-white">
-            City with name <span class="city-error fw-bold"></span> couldn't be found.
-
-
-        </div>
+    <div
+      class="toast position-absolute top-0 end-0 bg-danger m-lg-2"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <button
+        type="button"
+        class="btn-close btn-close-white float-end"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+      <div class="toast-body text-white">
+        City with name <span class="city-error fw-bold"></span> couldn't be
+        found.
+      </div>
     </div>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
 
     <div class="position-absolute bottom-0 start-0 p-2 user-select-none">
-
-        <div class="credits_container">
-            <button class="btn-credits">
-                <span class="btn-credits-icon">©</span>
-                <span class="btn-credits-text">Design from <a
-                        href="https://dribbble.com/shots/2332668-Lonely-Mountain-Weather-Concept" target="_blank"
-                        rel="noreferrer">Marina Matijaca</a>.
-                    Implementation by <a href="https://iliasdev.eu" target="_blank" rel="noreferrer">Ilias
-                        Thalassochoritis</a></span>
-            </button>
-        </div>
+      <div class="credits_container">
+        <button class="btn-credits">
+          <span class="btn-credits-icon">©</span>
+          <span class="btn-credits-text"
+            >Design from
+            <a
+              href="https://dribbble.com/shots/2332668-Lonely-Mountain-Weather-Concept"
+              target="_blank"
+              rel="noreferrer"
+              >Marina Matijaca</a
+            >. Implementation by
+            <a href="https://iliasdev.eu" target="_blank" rel="noreferrer"
+              >Ilias Thalassochoritis</a
+            ></span
+          >
+        </button>
+      </div>
     </div>
 
-
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <!-- Ionicons JS -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <!-- Main JS -->
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
