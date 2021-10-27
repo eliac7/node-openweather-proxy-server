@@ -2,13 +2,19 @@ let isSubmit = false;
 let tempName;
 const submitButton = document.querySelector("button");
 
-function getCurrentTime() {
-  const box = document.querySelector(".box");
-  var today = new Date();
-  var curHr = today.getHours();
-  if (curHr < 12) {
+//Get current time of the city that user has searched for and adding the properly class to body
+function getCurrentTime(time) {
+  const classListArray = ["morning", "afternoon", "evening"];
+
+  classListArray.forEach((item) => {
+    if (document.body.classList.contains(item)) {
+      document.body.classList.remove(item);
+    }
+  });
+
+  if (time < 12) {
     document.body.classList.add("morning");
-  } else if (curHr < 18) {
+  } else if (time < 18) {
     document.body.classList.add("afternoon");
   } else {
     document.body.classList.add("evening");
@@ -40,6 +46,12 @@ async function getWeatherData(city) {
   const url = `https://node-openweather-proxy-server.herokuapp.com/api?q=${city}`;
   const input = document.querySelector("input[name='location']");
   const box = document.querySelector(".box");
+
+  //Triger loading screen while waiting to fetch weather data
+
+  if (!box.classList.contains("loading")) {
+    box.classList.add("loading");
+  }
 
   //For current forecast weather
 
@@ -81,8 +93,18 @@ async function getWeatherData(city) {
       box.classList.remove("loading");
     }
 
+    if (box.classList.contains("loading")) {
+      box.classList.remove("loading");
+    }
+
     let name = data.city.name;
     let country = data.city.country;
+
+    let timezone = data.city.timezone;
+    const timezoneInMinutes = timezone / 60;
+    const currTime = moment().utcOffset(timezoneInMinutes).format("HH");
+
+    getCurrentTime(currTime);
 
     //Getting the next 2 days from OpenWeatherMap. It brings totally 40 items for 5 days. Each day has 8 items, so to bring 2 days only, we got only the 16 items on the list.
     //We exclude current day, that's why we start from 8.
@@ -147,6 +169,10 @@ async function getWeatherData(city) {
     isSubmit = false;
     submitButton.disabled = true;
   } catch (err) {
+    //Remove loading class even if we don't have any data (user wouldn't be able to type again a city)
+    if (box.classList.contains("loading")) {
+      box.classList.remove("loading");
+    }
     if (err.message === "city not found") {
       triggerToast("city", city);
       input.value = "";
@@ -201,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //initial state
 
-  getCurrentTime();
+  getCurrentTime(new Date());
 
   getWeatherData("Athens");
 });

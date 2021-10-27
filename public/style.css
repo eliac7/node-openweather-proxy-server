@@ -10,6 +10,7 @@ input:focus::placeholder {
 }
 
 body {
+  position: relative;
   background: linear-gradient(135deg, #826274, #3b3451);
   display: flex;
   align-items: center;
@@ -17,6 +18,7 @@ body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
+  transition: all 2s ease-in-out;
 }
 
 body.morning {
