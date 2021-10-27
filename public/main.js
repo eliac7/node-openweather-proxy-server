@@ -37,7 +37,7 @@ function triggerToast(reason, cityName) {
 }
 
 async function getWeatherData(city) {
-  const url = `http://localhost:8000/api?q=${city}`;
+  const url = `https://node-openweather-proxy-server.herokuapp.com/api?q=${city}`;
   const input = document.querySelector("input[name='location']");
   const box = document.querySelector(".box");
 
