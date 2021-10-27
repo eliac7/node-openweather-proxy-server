@@ -26,6 +26,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+The proxy server uses the OpenWeather API but you can easily change it to whatever API you are using for.
 
 ### Built With
 
