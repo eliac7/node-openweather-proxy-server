@@ -71,6 +71,9 @@ This is an example of how to list things you need to use the software and how to
     API_BASE_URL = https://api.openweathermap.org/data/2.5/forecast
     API_KEY_NAME = appid
     API_KEY_VALUE = YOUR_API_KEY
+    API_BASE_URL_LOCATION = https://api.opencagedata.com/geocode/v1/json
+    API_KEY_NAME_LOCATION = key
+    API_KEY_VALUE_LOCATION = YOUR_API_KEY
     NODE_ENV = ''
    ```
 
