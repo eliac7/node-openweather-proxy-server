@@ -59,13 +59,21 @@ function getUserPosition() {
           const data = await res.json();
 
           let userCity = data.results[0].components.city;
-          let userCountry = data.results[0].components["ISO_3166-1_alpha-2"];
-          getWeatherData(userCity + "," + userCountry);
+          let userCountry =
+            data.results[0].components["ISO_3166-1_alpha-2"] || "";
+
+          //In case of API doesn't return a city (atleast), just get Athens,GR weather
+          if (userCity) {
+            getWeatherData(userCity + "," + userCountry);
+          } else {
+            getWeatherData("Athens,GR");
+          }
         } catch (e) {
           console.log(e);
         }
       },
       (err) => {
+        console.log(err);
         //For any reason that this failed, just get by default Athens,GR weather
         getWeatherData("Athens,GR");
       }
