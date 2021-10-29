@@ -43,25 +43,34 @@ function triggerToast(reason, cityName) {
 }
 
 //Get user's current position
-async function getUserPosition() {
-  navigator.geolocation.getCurrentPosition(async (position) => {
-    const pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    try {
-      const res = await fetch(
-        `https://node-openweather-proxy-server.herokuapp.com/api/v1/location?q=${pos["lat"]}%2B${pos["lng"]}`
-      );
-      const data = await res.json();
+function getUserPosition() {
+  if (window.navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      //If supports geolocation
+      async (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        try {
+          const res = await fetch(
+            `https://node-openweather-proxy-server.herokuapp.com/api/v1/location?q=${pos["lat"]}%2B${pos["lng"]}`
+          );
+          const data = await res.json();
 
-      let userCity = data.results[0].components.city;
-      let userCountry = data.results[0].components["ISO_3166-1_alpha-2"];
-      getWeatherData(userCity + "," + userCountry);
-    } catch (e) {
-      console.log(e);
-    }
-  });
+          let userCity = data.results[0].components.city;
+          let userCountry = data.results[0].components["ISO_3166-1_alpha-2"];
+          getWeatherData(userCity + "," + userCountry);
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      (err) => {
+        //For any reason that this failed, just get by default Athens,GR weather
+        getWeatherData("Athens,GR");
+      }
+    );
+  }
 }
 
 async function getWeatherData(city) {
@@ -252,11 +261,5 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   getCurrentTime(new Date());
 
-  if (window.navigator.geolocation) {
-    //Get user's current location
-    await getUserPosition();
-  } else {
-    //otherwise,by default, get Athens' current weather
-    getWeatherData("Athens,GR");
-  }
+  getUserPosition();
 });
