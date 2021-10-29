@@ -42,8 +42,30 @@ function triggerToast(reason, cityName) {
   setTimeout(() => toast.classList.remove("show"), 5000);
 }
 
+//Get user's current position
+async function getUserPosition() {
+  navigator.geolocation.getCurrentPosition(async (position) => {
+    const pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    try {
+      const res = await fetch(
+        `https://node-openweather-proxy-server.herokuapp.com/api/v1/location?q=${pos["lat"]}%2B${pos["lng"]}`
+      );
+      const data = await res.json();
+
+      let userCity = data.results[0].components.city;
+      let userCountry = data.results[0].components["ISO_3166-1_alpha-2"];
+      getWeatherData(userCity + "," + userCountry);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+}
+
 async function getWeatherData(city) {
-  const url = `https://node-openweather-proxy-server.herokuapp.com/api?q=${city}`;
+  const url = `https://node-openweather-proxy-server.herokuapp.com/api/v1/weather?q=${city}`;
   const input = document.querySelector("input[name='location']");
   const box = document.querySelector(".box");
 
@@ -115,6 +137,7 @@ async function getWeatherData(city) {
       AfterTomorrowTemp,
       AfterTomorrowDay;
     for (var i = 8; i < 24; i += 8) {
+      // console.log(data.list[i]);
       if (i === 8) {
         //Tomorrow forecast weather
 
@@ -183,7 +206,7 @@ async function getWeatherData(city) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const form = document.querySelector("form");
   const input = document.querySelector("input");
 
@@ -229,5 +252,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   getCurrentTime(new Date());
 
-  getWeatherData("Athens");
+  if (window.navigator.geolocation) {
+    //Get user's current location
+    await getUserPosition();
+  } else {
+    //otherwise,by default, get Athens' current weather
+    getWeatherData("Athens,GR");
+  }
 });
