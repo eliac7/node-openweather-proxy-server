@@ -73,9 +73,17 @@ function getUserPosition() {
         }
       },
       (err) => {
-        console.log(err);
-        //For any reason that this failed, just get by default Athens,GR weather
-        getWeatherData("Athens,GR");
+        //Get city and country by IP
+        fetch("https://ipwhois.app/json/")
+          .then((res) => {
+            res.json().then((data) => {
+              getWeatherData(data.city + "," + data.country_code);
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            getWeatherData("Athens,GR");
+          });
       }
     );
   }
