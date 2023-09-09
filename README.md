@@ -14,8 +14,6 @@
     <br />
     <br />
     <br />
-    <a href="https://bit.ly/node_weather">View Demo</a>
-    ·
     <a href="https://github.com/eliac7/node-openweather-proxy-server/issues">Report Bug</a>
     ·
     <a href="https://github.com/eliac7/node-openweather-proxy-server/issues">Request Feature</a>
